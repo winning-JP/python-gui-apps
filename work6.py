@@ -3,29 +3,21 @@ import random
 
 # ↓↓↓ お約束のコード ↓↓↓
 window = tk.Tk()
-window.title("クイズアプリ")
+window.title("○×ゲーム")
 window.geometry("600x400")
 bg_color = "#333333"  # ダークグレー
 fg_color = "#FFFFFF"  # 白
 window.configure(bg=bg_color)
 # ↑↑↑ お約束のコード ↑↑↑
 
-str_list = ["明日は雨", "今日はいい天気"]
-
-num = random.randint(0, len(str_list)-1)
-text = str_list[num]
+list = []
 
 
-def typing():
-    global num, text
-    if text == type_entry.get():
-        num = random.randint(0, len(str_list)-1)
-        text = str_list[num]
-        label1.config(text=text)
-        type_entry.delete(0, tk.END)
+def game():
+    #
 
 
-# 入力フィールドの作成
+    # 入力フィールドの作成
 label1 = tk.Label(window, text=text, bg=bg_color, fg=fg_color)
 label1.pack(pady=10)
 
