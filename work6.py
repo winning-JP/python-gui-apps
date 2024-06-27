@@ -1,5 +1,4 @@
 import tkinter as tk
-import random
 
 # ↓↓↓ お約束のコード ↓↓↓
 window = tk.Tk()
@@ -11,7 +10,9 @@ window.configure(bg=bg_color)
 # ↑↑↑ お約束のコード ↑↑↑
 
 # ボードの状態を保持するリスト
-bord = [[" " for _ in range(3)] for _ in range(3)]
+bord = [[" ", " ", " "],
+        [" ", " ", " "],
+        [" ", " ", " "]]
 
 
 def game(row, col, box):
