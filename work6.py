@@ -4,44 +4,32 @@ import tkinter as tk
 # ↓↓↓ お約束のコード ↓↓↓
 window = tk.Tk()
 window.title("○×ゲーム")
-window.geometry("600x400")
+window.geometry("165x160")
 bg_color = "#333333"  # ダークグレー
 fg_color = "#FFFFFF"  # 白
 window.configure(bg=bg_color)
 # ↑↑↑ お約束のコード ↑↑↑
 
-list = [[0, 1, 2], [3, 4, 5], [6, 7, 8]]
+# ボードの状態を保持するリスト
+board = [[None for _ in range(3)] for _ in range(3)]
 
 
-def game(box):
-    box.config(text="◯")
+def game(row, col):
+    button = board[row][col]
+    button.config(text="◯")
 
 
 # 入力フィールドの作成
 label = tk.Label(window, text="マルバツゲーム", bg=bg_color, fg=fg_color)
-label.grid(row=0, column=0)
+label.grid(row=0, column=0, columnspan=3)
 
 # ボタンの作成
-box_0 = tk.Button(window, text="　", command=lambda: game(box_0))
-box_0.grid(row=2, column=1)
-box_1 = tk.Button(window, text="　", command=lambda: game(box_1))
-box_1.grid(row=2, column=2)
-box_2 = tk.Button(window, text="　", command=lambda: game(box_2))
-box_2.grid(row=2, column=3)
-
-box_3 = tk.Button(window, text="　", command=lambda: game(box_3))
-box_3.grid(row=3, column=1)
-box_4 = tk.Button(window, text="　", command=lambda: game(box_4))
-box_4.grid(row=3, column=2)
-box_5 = tk.Button(window, text="　", command=lambda: game(box_5))
-box_5.grid(row=3, column=3)
-
-box_6 = tk.Button(window, text="　", command=lambda: game(box_6))
-box_6.grid(row=4, column=1)
-box_7 = tk.Button(window, text="　", command=lambda: game(box_7))
-box_7.grid(row=4, column=2)
-box_8 = tk.Button(window, text="　", command=lambda: game(box_8))
-box_8.grid(row=4, column=3)
+for row in range(3):
+    for col in range(3):
+        button = tk.Button(
+            window, text=" ", command=lambda row=row, col=col: game(row, col), width=2, height=2)
+        button.grid(row=row+1, column=col)
+        board[row][col] = button
 
 # ↓↓↓ お約束のコード ↓↓↓
 window.mainloop()
