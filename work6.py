@@ -22,8 +22,11 @@ def game(row, col, box):
 
 
 def print_bord():
-    for row in bord:
-        print(row)
+    for row in range(3):
+        for col in range(3):
+            if bord[row][col] == "◯":
+                print(f"(row: {row},col: {col})")
+    print()
 
 
 # 入力フィールドの作成
