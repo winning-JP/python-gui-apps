@@ -1,35 +1,54 @@
 import tkinter as tk
-# import random
 
 # ↓↓↓ お約束のコード ↓↓↓
 window = tk.Tk()
 window.title("○×ゲーム")
-window.geometry("165x160")
+window.geometry("320x255")
 bg_color = "#333333"  # ダークグレー
 fg_color = "#FFFFFF"  # 白
 window.configure(bg=bg_color)
 # ↑↑↑ お約束のコード ↑↑↑
 
-# ボードの状態を保持するリスト
-board = [[None for _ in range(3)] for _ in range(3)]
 
-
-def game(row, col):
-    button = board[row][col]
-    button.config(text="◯")
+def game(box):
+    box.config(text="◯", font=("Arial", 24))
 
 
 # 入力フィールドの作成
-label = tk.Label(window, text="マルバツゲーム", bg=bg_color, fg=fg_color)
-label.grid(row=0, column=0, columnspan=3)
+label = tk.Label(window, text="マルバツゲーム", bg=bg_color,
+                 fg=fg_color, font=("Arial", 18))
+label.grid(row=0, column=0, columnspan=3, pady=10)
 
-# ボタンの作成
-for row in range(3):
-    for col in range(3):
-        button = tk.Button(
-            window, text=" ", command=lambda row=row, col=col: game(row, col), width=2, height=2)
-        button.grid(row=row+1, column=col)
-        board[row][col] = button
+# ボタンの作成と配置
+box_0 = tk.Button(window, text=" ", width=5, height=2,
+                  font=("Arial", 24), command=lambda: game(box_0))
+box_0.grid(row=1, column=0, padx=0, pady=0)
+box_1 = tk.Button(window, text=" ", width=5, height=2,
+                  font=("Arial", 24), command=lambda: game(box_1))
+box_1.grid(row=1, column=1, padx=0, pady=0)
+box_2 = tk.Button(window, text=" ", width=5, height=2,
+                  font=("Arial", 24), command=lambda: game(box_2))
+box_2.grid(row=1, column=2, padx=0, pady=0)
+
+box_3 = tk.Button(window, text=" ", width=5, height=2,
+                  font=("Arial", 24), command=lambda: game(box_3))
+box_3.grid(row=2, column=0, padx=0, pady=0)
+box_4 = tk.Button(window, text=" ", width=5, height=2,
+                  font=("Arial", 24), command=lambda: game(box_4))
+box_4.grid(row=2, column=1, padx=0, pady=0)
+box_5 = tk.Button(window, text=" ", width=5, height=2,
+                  font=("Arial", 24), command=lambda: game(box_5))
+box_5.grid(row=2, column=2, padx=0, pady=0)
+
+box_6 = tk.Button(window, text=" ", width=5, height=2,
+                  font=("Arial", 24), command=lambda: game(box_6))
+box_6.grid(row=3, column=0, padx=0, pady=0)
+box_7 = tk.Button(window, text=" ", width=5, height=2,
+                  font=("Arial", 24), command=lambda: game(box_7))
+box_7.grid(row=3, column=1, padx=0, pady=0)
+box_8 = tk.Button(window, text=" ", width=5, height=2,
+                  font=("Arial", 24), command=lambda: game(box_8))
+box_8.grid(row=3, column=2, padx=0, pady=0)
 
 # ↓↓↓ お約束のコード ↓↓↓
 window.mainloop()
