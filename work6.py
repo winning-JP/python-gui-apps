@@ -10,6 +10,7 @@ fg_color = "#FFFFFF"  # 白
 window.configure(bg=bg_color)
 # ↑↑↑ お約束のコード ↑↑↑
 
+
 # ボードの状態を保持するリスト
 bord = [[" ", " ", " "],
         [" ", " ", " "],
