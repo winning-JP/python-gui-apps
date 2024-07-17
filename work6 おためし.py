@@ -11,63 +11,60 @@ window.configure(bg=bg_color)
 # ↑↑↑ お約束のコード ↑↑↑
 
 # ボードの状態を保持するリスト
-bord = [[" " for _ in range(3)] for _ in range(3)]
-current_player = "◯"
+def print_board(board):
+    for row in board:
+        print(" | ".join(row))
+        print("-" * 9)
 
+def check_winner(board, mark):
+    # 行のチェック
+    for row in board:
+        if all(s == mark for s in row):
+            return True
 
-def game(row, col, box):
-    box.config(text="◯", font=("Arial", 24))
-    bord[row][col] = "◯"
-    print_bord()
+    # 列のチェック
+    for col in range(3):
+        if all(row[col] == mark for row in board):
+            return True
 
-# def game(box):
-#     global current_player
-#     box.config(text=current_player, font=("Arial", 24))
-#     # プレイヤーを交代
-#     current_player = "❌" if current_player == "◯" else "◯"
+    # 斜めのチェック
+    if all(board[i][i] == mark for i in range(3)):
+        return True
+    if all(board[i][2 - i] == mark for i in range(3)):
+        return True
 
+    return False
 
+def tic_tac_toe():
+    board = [[" " for _ in range(3)] for _ in range(3)]
+    current_player = "⭕️"
+    move_count = 0
 
-def print_bord():
-    for row in bord:
-        print(row)
+    while move_count < 9:
+        print_board(board)
+        print(f"Player {current_player}'s turn.")
 
+        row = int(input("Enter row (0, 1, or 2): "))
+        col = int(input("Enter column (0, 1, or 2): "))
 
-# 入力フィールドの作成
-label = tk.Label(window, text="マルバツゲーム", bg=bg_color,
-                 fg=fg_color, font=("Arial", 18))
-label.grid(row=0, column=0, columnspan=3, pady=10)
+        if board[row][col] != " ":
+            print("Cell already taken! Try again.")
+            continue
 
-# ボタンの作成と配置
-box_0 = tk.Button(window, text=" ", width=5, height=2, font=(
-    "Arial", 24), command=lambda: game(0, 0, box_0))
-box_0.grid(row=1, column=0, padx=0, pady=0)
-box_1 = tk.Button(window, text=" ", width=5, height=2, font=(
-    "Arial", 24), command=lambda: game(0, 1, box_1))
-box_1.grid(row=1, column=1, padx=0, pady=0)
-box_2 = tk.Button(window, text=" ", width=5, height=2, font=(
-    "Arial", 24), command=lambda: game(0, 2, box_2))
-box_2.grid(row=1, column=2, padx=0, pady=0)
+        board[row][col] = current_player
+        move_count += 1
 
-box_3 = tk.Button(window, text=" ", width=5, height=2, font=(
-    "Arial", 24), command=lambda: game(1, 0, box_3))
-box_3.grid(row=2, column=0, padx=0, pady=0)
-box_4 = tk.Button(window, text=" ", width=5, height=2, font=(
-    "Arial", 24), command=lambda: game(1, 1, box_4))
-box_4.grid(row=2, column=1, padx=0, pady=0)
-box_5 = tk.Button(window, text=" ", width=5, height=2, font=(
-    "Arial", 24), command=lambda: game(1, 2, box_5))
-box_5.grid(row=2, column=2, padx=0, pady=0)
+        if check_winner(board, current_player):
+            print_board(board)
+            print(f"Player {current_player} wins!")
+            return
 
-box_6 = tk.Button(window, text=" ", width=5, height=2, font=(
-    "Arial", 24), command=lambda: game(2, 0, box_6))
-box_6.grid(row=3, column=0, padx=0, pady=0)
-box_7 = tk.Button(window, text=" ", width=5, height=2, font=(
-    "Arial", 24), command=lambda: game(2, 1, box_7))
-box_7.grid(row=3, column=1, padx=0, pady=0)
-box_8 = tk.Button(window, text=" ", width=5, height=2, font=(
-    "Arial", 24), command=lambda: game(2, 2, box_8))
-box_8.grid(row=3, column=2, padx=0, pady=0)
+        current_player = "❌" if current_player == "⭕️" else "⭕️"
+
+    print_board(board)
+    print("It's a draw!")
+
+tic_tac_toe()
 
 # ↓↓↓ お約束のコード ↓↓↓
 window.mainloop()

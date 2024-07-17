@@ -20,6 +20,8 @@ def game(row, col, box):
     bord[row][col] = "◯"
     print_bord()
 
+    
+
 
 def print_bord():
     for row in range(3):
@@ -28,6 +30,12 @@ def print_bord():
                 print(f"(row: {row},col: {col})")
     print()
 
+def print_bord():
+    for row in range(3):
+        for col in range(3):
+            if bord[row][col] == "❌":
+                print(f"(row: {row},col: {col})")
+    print()
 
 # 入力フィールドの作成
 label = tk.Label(window, text="マルバツゲーム", bg=bg_color,
