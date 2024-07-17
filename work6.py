@@ -44,6 +44,8 @@ def ai_move():
         update_empty_cells()
         print_bord()
 
+    
+
 
 def print_bord():
     for row in range(3):
@@ -62,6 +64,12 @@ def print_bord():
         print(f"ランダムに選ばれた空欄: {empty_cells[num]}")
     print()
 
+def print_bord():
+    for row in range(3):
+        for col in range(3):
+            if bord[row][col] == "❌":
+                print(f"(row: {row},col: {col})")
+    print()
 
 # 初期化時に空欄の位置を更新
 update_empty_cells()
